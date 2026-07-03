@@ -1,0 +1,44 @@
+name: YouTube 데이터 자동 갱신
+
+# 매일 자정(KST, UTC+9)에 자동 실행 + 언제든 수동 실행(workflow_dispatch) 가능
+on:
+  schedule:
+    - cron: "0 15 * * *"   # UTC 15:00 = KST 00:00
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 저장소 체크아웃
+        uses: actions/checkout@v4
+
+      - name: Node.js 설정
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: 채널 업로드에서 신곡 자동 탐색 → public/data/videos.json 갱신
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: node scripts/fetch-songs-auto.js
+
+      - name: 멤버 프로필 사진 · 음반 썸네일 → public/data/meta.json 갱신
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: node scripts/fetch-meta.js
+
+      - name: 변경사항이 있으면 커밋 & 푸시
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/data/videos.json public/data/meta.json
+          if git diff --cached --quiet; then
+            echo "변경사항 없음 — 커밋 생략"
+          else
+            git commit -m "chore: YouTube 데이터 자동 갱신 ($(date -u +'%Y-%m-%d'))"
+            git push
+          fi
