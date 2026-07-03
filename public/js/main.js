@@ -85,9 +85,12 @@ function albumCard(a) {
 }
 
 function goodsCard(g) {
+  const img = g.image
+    ? `<img src="${g.image}" alt="${g.name}" loading="lazy" style="width:100%;height:100%;object-fit:cover">`
+    : `<span class="ph-star">★</span><span class="ph-label">이미지 준비 중</span>`;
   return `
     <div class="gcard">
-      <div class="gimg"><span class="ph-star">★</span><span class="ph-label">이미지 준비 중</span></div>
+      <div class="gimg">${img}</div>
       <div class="gbody">
         <div class="gname">${g.name}</div>
         <div class="gperiod">${g.period}</div>
@@ -97,9 +100,12 @@ function goodsCard(g) {
 }
 
 function newsCard(n) {
+  const img = n.image
+    ? `<img src="${n.image}" alt="${n.title}" loading="lazy" style="width:100%;height:100%;object-fit:cover">`
+    : `<span class="ph-star">★</span>`;
   return `
     <a class="ncard" href="${n.link}" target="_blank" rel="noopener">
-      <div class="nimg"><span class="ph-star">★</span></div>
+      <div class="nimg">${img}</div>
       <div class="nbody"><div class="nt">${n.title}</div><div class="nd">★ ${n.date}</div></div>
     </a>`;
 }
@@ -120,8 +126,24 @@ function wireMemberCardClicks(c) {
   c.addEventListener("keydown", (e) => { if (e.key === "Enter") go(e.target); });
 }
 
+/* ============ 히어로 멤버 포토 콜라주 ============ */
+function heroPhotoTile(m, i) {
+  const photo = META.members[m.id];
+  const inner = photo
+    ? `<img src="${photo}" alt="${m.nameKr}" loading="lazy">`
+    : `<span class="hp-star">★</span>`;
+  return `<div class="hp-tile" style="--mc:${m.color}" title="${m.nameKr}">${inner}</div>`;
+}
+function renderHeroPhotos() {
+  const el = document.getElementById("hero-photos");
+  if (!el) return;
+  const picks = MEMBERS.slice(0, 6);
+  el.innerHTML = picks.map(heroPhotoTile).join("");
+}
+
 /* ============ 페이지별 렌더 ============ */
 function renderHome() {
+  renderHeroPhotos();
   const news = document.getElementById("news-grid"); news.innerHTML = NEWS.map(newsCard).join(""); revealize(news);
   const mg = document.getElementById("member-preview"); mg.innerHTML = MEMBERS.slice(0, 5).map(memberCard).join(""); wireMemberCardClicks(mg); revealize(mg);
   const music = document.getElementById("music-preview"); music.innerHTML = ALBUMS.slice(0, 4).map(albumCard).join(""); revealize(music);

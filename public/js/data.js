@@ -77,7 +77,7 @@ const SONGS = [
   { videoId:"sample_hina1", memberId:"hina", title:"(대표곡 제목)", views:9800000, date:"2024.03", url:"#" },
   { videoId:"sample_yuni2", memberId:"yuni", title:"SUPADOPA", views:8700000, date:"2024.07", url:"#" },
   { videoId:"sample_rin1", memberId:"rin", title:"(대표곡 제목)", views:6400000, date:"2025.01", url:"#" },
-  { videoId:"sample_yuni3", memberId:"yuni", title:"슈퍼삐질게하는법", views:5400000, date:"2025.06", url:"#" },
+  { videoId:"sample_yuni3", memberId:"yuni", title:"슈퍼삐질게하는법", views:5400000, date:"2025.11", url:"#" },
   { videoId:"sample_mashiro1", memberId:"mashiro", title:"악마가 아닌걸 (cover)", views:5200000, date:"2024.09", url:"#" },
   { videoId:"sample_lize1", memberId:"lize", title:"(대표곡 제목)", views:4100000, date:"2024.12", url:"#" },
   { videoId:"sample_riko1", memberId:"riko", title:"유성우", views:3600000, date:"2025.05", url:"#" },
@@ -89,31 +89,31 @@ const SONGS = [
 
 // 음반: videoId 를 넣으면 썸네일·링크가 자동 연동됩니다 (없으면 color 블록 + link 사용)
 const ALBUMS = [
+  { title:"STAR TRAIL",   artist:"스텔라이브",     type:"EP",     date:"2026.05", color:"#14152b", videoId:"v094-E3Pmtk", link:"#" },
+  { title:"마음악보",      artist:"Universe",      type:"단체곡",  date:"2026.06", color:"#6fa8dc", videoId:"yiprl7-dU04", link:"#" },
   { title:"내꺼 하는 법",    artist:"아야츠노 유니",     type:"오리지널",  date:"2023.07", color:"#7987e0", videoId:"pkypi5nXSYM", link:"#" },
-  { title:"STAR TRAIL",   artist:"스텔라이브",     type:"EP",     date:"2026.05", color:"#14152b", videoId:"", link:"#" },
-  { title:"마음악보",      artist:"Universe",      type:"단체곡",  date:"2026.06", color:"#6fa8dc", videoId:"", link:"#" },
-  { title:"유성우",        artist:"Cliché",        type:"단체곡",  date:"2025.05", color:"#2fb6a0", videoId:"", link:"#" },
+  { title:"유성우",        artist:"Cliché",        type:"단체곡",  date:"2025.05", color:"#2fb6a0", videoId:"XR81lQrRceg", link:"#" },
   { title:"내꺼하는 법 (Aiobahn Remix)", artist:"아야츠노 유니", type:"오리지널", date:"2024.01", color:"#e94b6a", videoId:"8z-2uO9Cg2c", link:"https://www.youtube.com/watch?v=8z-2uO9Cg2c" },
   { title:"SUPADOPA",     artist:"아야츠노 유니",   type:"오리지널", date:"2024.06", color:"#ef5777", videoId:"R_RAWjqdgTs", link:"https://www.youtube.com/watch?v=R_RAWjqdgTs" },
   { title:"악마가 아닌걸", artist:"Riko x Mashiro", type:"커버",    date:"2026.05", color:"#b98cd6", videoId:"xKA5wKYMFhM", link:"https://www.youtube.com/watch?v=xKA5wKYMFhM" },
-  { title:"유성우 (린 ver.)", artist:"아오쿠모 린", type:"커버",    date:"2025.05", color:"#2fb6a0", videoId:"", link:"#" },
 ];
 
-// 실제 공식 판매처(팬딩/카카오 이모티콘 스토어)로 연결됩니다.
+// 실제 공식 판매처(팬딩/카카오 이모티콘 스토어)로 연결되며, image 에 실제 상품/공지 이미지를 넣으면 카드에 표시됩니다.
 const GOODS = [
-  { name:"아야츠노 유니 생일 한정 굿즈", period:"2026.06.01 ~ 06.21", link:"https://fanding.kr/@stellive/shop" },
-  { name:"AKANE LIZE 콘서트 MD", period:"2026.06.15 ~ 소진 시", link:"https://fanding.kr/@stellive/shop" },
-  { name:"Everys x 버터와플 콜라보", period:"2026.06.04 ~", link:"https://fanding.kr/@stellive/shop" },
-  { name:"STAR TRAIL EP 패키지", period:"2026.04.10 ~", link:"https://fanding.kr/@stellive/shop" },
-  { name:"스텔라이브 카카오 이모티콘", period:"상시 판매", link:"https://e.kakao.com/creator/0CGK4C" },
-  { name:"TIME TRAVEL 팝업 굿즈", period:"기간 한정", link:"https://fanding.kr/@stellive/shop" },
+  { name:"아야츠노 유니 생일 한정 굿즈", period:"2026.06.01 ~ 06.21", link:"https://stellive.me/news/11683", image:"https://stellive.me/files/attach/images/2026/05/21/067296f84a44331c857e20b83ad4dd11.png" },
+  { name:"AKANE LIZE : OVT. 콘서트 MD", period:"2026.06.02 ~ 07.02", link:"https://stellive.me/news/12482", image:"https://stellive.me/files/attach/images/2026/07/02/acd03c3a367a3a12fd5e3c9ccaa75075.png" },
+  { name:"Everys x 버터와플 콜라보", period:"2026.06.04 ~", link:"https://x.com/StelLive_kr/status/2059190339404247125", image:"https://pbs.twimg.com/media/HJOjWjeboAAs6wr.jpg:large" },
+  { name:"STAR TRAIL 디지털 아트북 & 패키지", period:"2026.05.08 ~", link:"https://startrail.stellive.me/", image:"https://startrail.stellive.me/thumbnail.jpg" },
+  { name:"스텔라이브 카카오 이모티콘", period:"상시 판매", link:"https://e.kakao.com/creator/0CGK4C", image:"https://item.kakaocdn.net/creator/0CGK4C?item=_91o0Kw4R-HEL4x-fg89El-wM20=&t=495291" },
+  { name:"STELLIVE TIME TRAVEL: TERMINAL 5", period:"2026.01 ~ 03 (팝업스토어)", link:"https://fanding.kr/@stellive/post/174126/", image:"https://dcjnmis8jxmbl.cloudfront.net/upload/image/post/content/resize/2026/01/30/Shma8DveiQKNsCJ5.webp" },
 ];
 
-// 실제 공식 뉴스 페이지(stellive.me/news)로 연결됩니다.
+// 실제 공식 뉴스 페이지(stellive.me/news) 기사로 연결되며, image 에 실제 기사 이미지가 표시됩니다.
 const NEWS = [
-  { title:"아카네 리제 첫 단독 콘서트 온라인 스트리밍 안내", date:"2026.06.24", link:"https://stellive.me/news" },
-  { title:"아야츠노 유니 생일 한정 굿즈 판매 마감 임박", date:"2026.06.21", link:"https://stellive.me/news" },
-  { title:"스텔라이브 1st EP STAR TRAIL 발매 안내", date:"2026.05.08", link:"https://stellive.me/news" },
+  { title:"<AKANE LIZE : OVT. FIRST SOLO CONCERT> 현장 판매 MD 리스트 공개 및 운영 안내", date:"2026.07.02", link:"https://stellive.me/news/12482", image:"https://stellive.me/files/attach/images/2026/07/02/acd03c3a367a3a12fd5e3c9ccaa75075.png" },
+  { title:"아카네 리제 첫 단독 콘서트 온라인 스트리밍 안내", date:"2026.06.24", link:"https://stellive.me/news/12350", image:"https://stellive.me/files/attach/images/2026/06/24/d2aa53d82ff4537baae496d7bd099aac.png" },
+  { title:"아야츠노 유니 생일 한정 굿즈 판매 마감 임박", date:"2026.06.21", link:"https://stellive.me/news/12283", image:"https://stellive.me/files/attach/images/2026/06/21/ebab44701aa6f78b0832b5ff2a4fbfed.png" },
+  { title:"아야츠노 유니 1st EP <슈퍼삐질게하는법> D-1", date:"2025.11.11", link:"https://stellive.me/news/8493", image:"https://stellive.me/files/attach/images/2025/11/11/eb6857d9233445c4e0afb199bb92fcac.jpg" },
 ];
 
 function getMember(id) { return MEMBERS.find((m) => m.id === id); }
