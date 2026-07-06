@@ -119,15 +119,12 @@ button { font-family: inherit; }
 .sortbox:hover { border-color: var(--signature); }
 
 /* ===== 멤버 카드 =====
-   Grid의 auto-fit은 "완전히 빈 열"만 접어주기 때문에, 마지막 줄에 카드가 1~2개만
-   남는 경우(예: 5개를 4열로 배치하면 마지막 줄에 1개)에는 그 카드가 늘어나지 못하고
-   왼쪽에 남아 오른쪽에 큰 빈 공간이 생깁니다. Flexbox(wrap)로 전환하면 같은 줄에 있는
-   카드끼리만 남는 공간을 나눠 가지므로 이 문제가 해결됩니다. 멤버 카드는 헤더 이미지
-   높이가 고정(158px)이라 폭이 과도하게 늘어나면 얼굴 사진이 옆으로 길게 잘려 보일 수
-   있어 max-width로 확대 폭을 적당히 제한하고, justify-content:center로 마지막 줄이
-   한쪽으로 치우치지 않고 가운데에 균형 있게 배치되도록 합니다. */
-.member-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(12px, 2.4vw, 18px); padding-bottom: 20px; }
-.mcard { flex: 1 1 190px; max-width: 250px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; cursor: pointer; transition: transform .18s, box-shadow .18s; }
+   카드 크기는 고정(flex-grow:0)하고 flex-wrap으로 줄바꿈만 자동으로 일어나게 합니다.
+   화면 폭에 따라 한 줄에 들어가는 카드 개수(열 수)만 자연스럽게 줄어들고, 마지막 줄은
+   왼쪽부터 채운 뒤 남는 공간은 그대로 비워둡니다(카드를 억지로 늘리거나 가운데로
+   몰지 않음 — 카드 개수·비율을 그대로 유지하는 것이 최우선). */
+.member-grid { display: flex; flex-wrap: wrap; gap: clamp(12px, 2.4vw, 18px); padding-bottom: 20px; }
+.mcard { flex: 0 1 190px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; cursor: pointer; transition: transform .18s, box-shadow .18s; }
 .mcard:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
 .mcard:focus-visible { outline: 3px solid var(--signature); outline-offset: 2px; }
 .mhead { height: 158px; position: relative; display: flex; align-items: flex-end; padding: 12px; background: radial-gradient(120% 120% at 30% 15%, color-mix(in srgb, var(--mc) 85%, white) 0%, var(--mc) 60%), var(--mc); }
@@ -147,11 +144,9 @@ button { font-family: inherit; }
 .social a:hover { background: color-mix(in srgb, var(--mc) 26%, white); transform: translateY(-2px); }
 .social a:active { transform: translateY(0) scale(.96); }
 
-/* ===== 노래(영상) 카드 =====
-   썸네일이 aspect-ratio로 비율 고정이라 카드 폭이 늘어나도 이미지가 비례해서
-   커질 뿐 찌그러지지 않으므로, 멤버 카드보다 넉넉하게 확대를 허용합니다. */
-.vgrid { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(14px, 2.4vw, 20px); padding-bottom: 20px; }
-.vcard { flex: 1 1 260px; max-width: 420px; display: block; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; transition: transform .18s, box-shadow .18s; }
+/* ===== 노래(영상) 카드 ===== 카드 크기 고정 + 자동 줄바꿈 (grow:0, 왼쪽 정렬) */
+.vgrid { display: flex; flex-wrap: wrap; gap: clamp(14px, 2.4vw, 20px); padding-bottom: 20px; }
+.vcard { flex: 0 1 260px; display: block; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; transition: transform .18s, box-shadow .18s; }
 .vcard:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
 .vthumb { position: relative; aspect-ratio: 16/9; background: var(--mc); display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .vthumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
@@ -165,9 +160,9 @@ button { font-family: inherit; }
 .vbadge { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 12px; background: color-mix(in srgb, var(--mc) 14%, white); color: color-mix(in srgb, var(--mc) 72%, black); }
 .vviews { font-size: 13px; color: var(--muted); font-weight: 700; }
 
-/* ===== 음반 카드 (정사각형 커버 — 확대해도 비율 유지되어 안전) ===== */
-.agrid { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(12px, 2.4vw, 18px); padding-bottom: 20px; }
-.acard { flex: 1 1 190px; max-width: 320px; display: block; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; transition: transform .18s, box-shadow .18s; }
+/* ===== 음반 카드 ===== 카드 크기 고정 + 자동 줄바꿈 (grow:0, 왼쪽 정렬) */
+.agrid { display: flex; flex-wrap: wrap; gap: clamp(12px, 2.4vw, 18px); padding-bottom: 20px; }
+.acard { flex: 0 1 190px; display: block; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; transition: transform .18s, box-shadow .18s; }
 .acard:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
 .acover { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.65); font-size: 34px; transition: filter .2s, transform .3s; }
 .acard:hover .acover { filter: brightness(1.06); transform: scale(1.02); }
@@ -177,9 +172,9 @@ button { font-family: inherit; }
 .aartist { font-size: 12px; color: var(--faint); }
 .adate { font-size: 12px; color: #b0b0be; margin-top: 7px; }
 
-/* ===== 굿즈 카드 (4:3 비율 이미지 — 확대해도 비율 유지되어 안전) ===== */
-.ggrid { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(14px, 2.4vw, 20px); padding-bottom: 20px; }
-.gcard { flex: 1 1 260px; max-width: 420px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; transition: transform .18s, box-shadow .18s; }
+/* ===== 굿즈 카드 ===== 카드 크기 고정 + 자동 줄바꿈 (grow:0, 왼쪽 정렬) */
+.ggrid { display: flex; flex-wrap: wrap; gap: clamp(14px, 2.4vw, 20px); padding-bottom: 20px; }
+.gcard { flex: 0 1 260px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; transition: transform .18s, box-shadow .18s; }
 .gcard:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
 .gimg { aspect-ratio: 4/3; background: linear-gradient(135deg, var(--signature-soft), #eef0fb 60%, #fff); display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; }
 .gbody { padding: 16px 18px 18px; }
@@ -189,9 +184,9 @@ button { font-family: inherit; }
 .gbtn:hover { background: #8a97e8; transform: translateY(-2px); }
 .gbtn:active { transform: translateY(0) scale(.98); }
 
-/* ===== 뉴스 카드 (16:9 비율 이미지 — 확대해도 비율 유지되어 안전) ===== */
-.news-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(12px, 2.4vw, 18px); }
-.ncard { flex: 1 1 260px; max-width: 420px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; transition: transform .18s, box-shadow .18s; }
+/* ===== 뉴스 카드 ===== 카드 크기 고정 + 자동 줄바꿈 (grow:0, 왼쪽 정렬) */
+.news-grid { display: flex; flex-wrap: wrap; gap: clamp(12px, 2.4vw, 18px); }
+.ncard { flex: 0 1 260px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; transition: transform .18s, box-shadow .18s; }
 .ncard:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
 .nimg { aspect-ratio: 16/9; background: linear-gradient(135deg, var(--signature-soft), #eef0fb 60%, #fff); display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .nbody { padding: 15px 17px 17px; }
@@ -291,8 +286,8 @@ button { font-family: inherit; }
 
   /* 모바일: 고정 열 수 대신 flex-basis만 줄여 화면 너비에 맞게 2~3열이 자동으로 결정되도록 함 */
   .member-grid, .agrid, .vgrid, .ggrid, .news-grid { gap: 12px; }
-  .mcard, .acard { flex-basis: 140px; max-width: 220px; }
-  .vcard, .gcard, .ncard { flex-basis: 220px; max-width: 100%; }
+  .mcard, .acard { flex-basis: 140px; }
+  .vcard, .gcard, .ncard { flex-basis: 220px; }
   .mhead { height: 130px; }
   .mhead .avatar { top: 34px; width: 46px; height: 46px; }
   .mhead .cap { top: 88px; }
