@@ -27,7 +27,12 @@ a { text-decoration: none; color: inherit; }
 img { display: block; max-width: 100%; }
 button { font-family: inherit; }
 
-.wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+.wrap { 
+  max-width: 1100px; 
+  margin: 0 auto; 
+  padding: 0 24px;
+  width: 100%;
+}
 
 /* ===== 등장 애니메이션 (스크롤 진입 시) ===== */
 .reveal { opacity: 0; transform: translateY(16px); transition: opacity .55s ease, transform .55s ease; }
@@ -119,29 +124,111 @@ button { font-family: inherit; }
 .sortbox:hover { border-color: var(--signature); }
 
 /* ===== 멤버 카드 ===== */
-.member-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 18px; padding-bottom: 20px; }
-.mcard { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; cursor: pointer; transition: transform .18s, box-shadow .18s; }
+.member-grid { 
+  display: grid; 
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 20px; 
+  padding-bottom: 20px;
+  max-width: 100%;
+}
+.mcard { 
+  background: var(--surface); 
+  border: 1px solid var(--line); 
+  border-radius: var(--radius); 
+  overflow: hidden; 
+  cursor: pointer; 
+  transition: transform .18s, box-shadow .18s;
+  display: flex;
+  flex-direction: column;
+}
 .mcard:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
 .mcard:focus-visible { outline: 3px solid var(--signature); outline-offset: 2px; }
-.mhead { height: 158px; position: relative; display: flex; align-items: flex-end; padding: 12px; background: radial-gradient(120% 120% at 30% 15%, color-mix(in srgb, var(--mc) 85%, white) 0%, var(--mc) 60%), var(--mc); }
-.mhead .unit { font-size: 11px; color: #fff; background: rgba(0,0,0,.22); padding: 3px 10px; border-radius: 14px; font-weight: 700; z-index: 2; }
+.mhead { 
+  height: 160px; 
+  position: relative; 
+  display: flex; 
+  align-items: flex-end; 
+  padding: 12px; 
+  background: radial-gradient(120% 120% at 30% 15%, color-mix(in srgb, var(--mc) 85%, white) 0%, var(--mc) 60%), var(--mc); 
+  flex-shrink: 0;
+}
+.mhead .unit { 
+  font-size: 11px; 
+  color: #fff; 
+  background: rgba(0,0,0,.22); 
+  padding: 4px 11px; 
+  border-radius: 14px; 
+  font-weight: 700; 
+  z-index: 2; 
+}
 .mhead .star { position: absolute; top: 12px; right: 14px; color: rgba(255,255,255,.75); font-size: 18px; transition: transform .3s; }
 .mcard:hover .mhead .star { transform: rotate(72deg) scale(1.15); }
 .mhead .avatar { position: absolute; top: 42px; left: 50%; transform: translateX(-50%); width: 56px; height: 56px; border-radius: 50%; background: rgba(255,255,255,.28); transition: transform .25s, background .25s; }
 .mcard:hover .mhead .avatar { transform: translateX(-50%) scale(1.12); background: rgba(255,255,255,.4); }
 .mhead .cap { position: absolute; top: 104px; left: 0; right: 0; text-align: center; color: rgba(255,255,255,.7); font-size: 10px; letter-spacing: 1px; }
-.mbody { padding: 18px 18px 20px; }
-.mbody .name { font-size: 17px; font-weight: 800; }
-.mbody .roman { font-size: 12px; color: var(--faint); margin: 3px 0 14px; }
-.mrow { display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); margin-bottom: 4px; }
-.mrow .k { color: var(--faint); }
-.social { display: flex; gap: 8px; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); }
-.social a { flex: 1; text-align: center; padding: 7px 0; border-radius: 9px; font-size: 12px; font-weight: 700; background: color-mix(in srgb, var(--mc) 14%, white); color: color-mix(in srgb, var(--mc) 72%, black); transition: background .15s, transform .15s; }
-.social a:hover { background: color-mix(in srgb, var(--mc) 26%, white); transform: translateY(-2px); }
-.social a:active { transform: translateY(0) scale(.96); }
+.mbody { 
+  padding: 16px 16px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.mbody .name { 
+  font-size: 16px; 
+  font-weight: 800;
+  line-height: 1.4;
+  margin-bottom: 2px;
+}
+.mbody .roman { 
+  font-size: 11px; 
+  color: var(--faint); 
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+.mrow { 
+  display: flex; 
+  justify-content: space-between; 
+  font-size: 12px; 
+  color: var(--muted); 
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+.mrow .k { 
+  color: var(--faint);
+  font-weight: 600;
+}
+.mrow .v {
+  font-weight: 700;
+  color: var(--text);
+}
+.social { 
+  display: flex; 
+  gap: 6px; 
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+.social a { 
+  flex: 1; 
+  text-align: center; 
+  padding: 8px 6px; 
+  border-radius: 8px; 
+  font-size: 11px; 
+  font-weight: 700; 
+  background: color-mix(in srgb, var(--mc) 12%, white); 
+  color: color-mix(in srgb, var(--mc) 70%, black);
+  transition: background .15s, transform .15s;
+  line-height: 1.3;
+}
+.social a:hover { 
+  background: color-mix(in srgb, var(--mc) 24%, white); 
+  transform: translateY(-1px);
+}
+.social a:active { 
+  transform: translateY(0) scale(.96);
+}
 
 /* ===== 노래(영상) 카드 ===== */
-.vgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; padding-bottom: 20px; }
+.vgrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding-bottom: 20px; }
 .vcard { display: block; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; transition: transform .18s, box-shadow .18s; }
 .vcard:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
 .vthumb { position: relative; aspect-ratio: 16/9; background: var(--mc); display: flex; align-items: center; justify-content: center; overflow: hidden; }
@@ -157,7 +244,7 @@ button { font-family: inherit; }
 .vviews { font-size: 13px; color: var(--muted); font-weight: 700; }
 
 /* ===== 음반 카드 ===== */
-.agrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 18px; padding-bottom: 20px; }
+.agrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; padding-bottom: 20px; }
 .acard { display: block; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; transition: transform .18s, box-shadow .18s; }
 .acard:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
 .acover { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.65); font-size: 34px; transition: filter .2s, transform .3s; }
@@ -169,7 +256,7 @@ button { font-family: inherit; }
 .adate { font-size: 12px; color: #b0b0be; margin-top: 7px; }
 
 /* ===== 굿즈 카드 ===== */
-.ggrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; padding-bottom: 20px; }
+.ggrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding-bottom: 20px; }
 .gcard { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; transition: transform .18s, box-shadow .18s; }
 .gcard:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
 .gimg { aspect-ratio: 4/3; background: linear-gradient(135deg, var(--signature-soft), #eef0fb 60%, #fff); display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; }
@@ -181,7 +268,7 @@ button { font-family: inherit; }
 .gbtn:active { transform: translateY(0) scale(.98); }
 
 /* ===== 뉴스 카드 ===== */
-.news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; }
+.news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding-bottom: 10px; }
 .ncard { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; transition: transform .18s, box-shadow .18s; }
 .ncard:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
 .nimg { aspect-ratio: 16/9; background: linear-gradient(135deg, var(--signature-soft), #eef0fb 60%, #fff); display: flex; align-items: center; justify-content: center; overflow: hidden; }
@@ -239,6 +326,13 @@ button { font-family: inherit; }
   .hero h1 { font-size: 40px; }
   .hero .wrap { padding: 60px 20px 66px; }
   .hero-photos { grid-template-columns: repeat(3, 64px); grid-auto-rows: 64px; gap: 10px; }
+  
+  /* 그리드 3열로 */
+  .member-grid { grid-template-columns: repeat(3, 1fr); }
+  .news-grid { grid-template-columns: repeat(3, 1fr); }
+  .vgrid { grid-template-columns: repeat(3, 1fr); }
+  .agrid { grid-template-columns: repeat(3, 1fr); }
+  .ggrid { grid-template-columns: repeat(3, 1fr); }
 }
 
 /* 네비게이션: 햄버거 전환 (~820px) */
@@ -275,11 +369,22 @@ button { font-family: inherit; }
   .section { padding: 26px 0; }
   .section-head h2 { font-size: 19px; }
 
-  /* 멤버 카드는 모바일에서 2열 */
-  .member-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-  .mhead { height: 130px; }
-  .mhead .avatar { top: 34px; width: 46px; height: 46px; }
-  .mhead .cap { top: 88px; }
+  /* 그리드 2열로 */
+  .member-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .news-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .vgrid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .agrid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .ggrid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  
+  .mhead { height: 140px; }
+  .mhead .avatar { top: 38px; width: 50px; height: 50px; }
+  .mhead .cap { top: 92px; font-size: 9px; }
+  .mbody { padding: 14px 14px; }
+  .mbody .name { font-size: 15px; }
+  .mbody .roman { font-size: 10px; margin-bottom: 10px; }
+  .mrow { font-size: 11px; margin-bottom: 5px; }
+  .social { gap: 5px; padding-top: 10px; }
+  .social a { padding: 6px 4px; font-size: 10px; }
 
   /* 노래 페이지 탭은 가로 스크롤 */
   body[data-page="songs"] .tabs { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 8px; -webkit-overflow-scrolling: touch; }
@@ -293,9 +398,16 @@ button { font-family: inherit; }
   .to-top { right: 16px; bottom: 16px; }
 }
 
-/* 아주 작은 화면 (~380px): 멤버 카드 1열 */
+/* 아주 작은 화면 (~380px): 1열 */
 @media (max-width: 380px) {
-  .member-grid { grid-template-columns: 1fr; }
+  .member-grid { grid-template-columns: repeat(1, 1fr); gap: 12px; }
+  .news-grid { grid-template-columns: repeat(1, 1fr); gap: 12px; }
+  .vgrid { grid-template-columns: repeat(1, 1fr); gap: 12px; }
+  .agrid { grid-template-columns: repeat(1, 1fr); gap: 12px; }
+  .ggrid { grid-template-columns: repeat(1, 1fr); gap: 12px; }
+  .mbody { padding: 12px 12px; }
+  .mbody .name { font-size: 14px; }
+  .mrow { font-size: 10px; margin-bottom: 4px; }
 }
 
 /* 모션 최소화 설정 존중 */

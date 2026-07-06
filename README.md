@@ -18,6 +18,7 @@
 - **앨범 썸네일 7개 연동**: STAR TRAIL, 마음악보, 유성우 등 실제 유튜브 영상ID를 매칭하여 썸네일/링크 활성화 (`data/meta.json` 갱신)
 - **히어로 배너 리디자인**: 텍스트 영역 + 멤버 6인 원형 포토 콜라주 + 멤버/유닛/음반 통계 + 보조 CTA(음악 감상하기) 버튼을 갖춘 2단 레이아웃으로 개편 (기존 텍스트만 있던 단조로운 배너 개선)
 - **YouTube 데이터 자동 갱신**: GitHub Actions 워크플로우(`update-youtube-data.yml`) 작성 완료 (현재 저장소 App 권한 제한으로 GitHub에는 미반영 상태 — 아래 '알려진 제한사항' 참고)
+- **반응형 카드 그리드 + 중앙 정렬 개선 (CSS Grid `auto-fill` 방식으로 최종 전환)**: 멤버/노래/음반/굿즈/뉴스 카드 그리드(`.member-grid`, `.vgrid`, `.agrid`, `.ggrid`, `.news-grid`)를 **CSS Grid(`grid-template-columns: repeat(auto-fill, 고정px)` + `justify-content: center`)** 로 구성. 카드 크기는 완전히 고정(늘어나거나 줄어들지 않음)되며, 화면 폭에 맞춰 열 개수가 자동으로 계산되고(반응형), 그리드 트랙 전체가 `.wrap` 컨테이너 안에서 좌우 대칭으로 중앙 배치됨 — 마지막 줄에 카드가 1~2개만 남아도 카드 자체는 늘어나지 않으면서 전체 블록이 중앙에 위치해 좌우 여백이 항상 균등하게 유지됨(이전 Flexbox 왼쪽 정렬 방식에서 발생하던 "마지막 줄이 왼쪽에 몰려 오른쪽에 큰 빈 공간이 남는" 비대칭 문제를 해결). 브레이크포인트(1024px/600px/380px)마다 `grid-template-columns`의 고정폭 값만 줄여 화면 크기별 열 개수가 자연스럽게 결정되도록 함. 아울러 카드 내부 정보 박스(`.mbody`/`.abody`/`.gbody`/`.nbody`/`.vbody`)의 패딩을 `16~18px`로 통일하고, 음반·굿즈·뉴스 카드는 `flex-direction:column` + `margin-top:auto`를 적용해 제목 줄 수가 달라도 하단의 날짜/버튼이 카드 바닥에 가지런히 정렬되도록 개선. 다양한 뷰포트(1440~375px)에서 중앙 정렬·카드 크기 불변·반응형 열 개수 조정을 Playwright로 검증
 
 ## URL 구조 (경로 및 파라미터)
 | 경로 | 설명 |
@@ -97,4 +98,4 @@ webapp/
 - **상태**: 로컬 샌드박스에서 정상 동작 확인 완료 (PM2 + wrangler pages dev), 모든 라우트 200 응답 + 콘솔 에러 0건 확인
 - **GitHub**: [rekixia/stie-v1](https://github.com/rekixia/stie-v1) main 브랜치에 푸시 완료 (단, 워크플로 파일 1건 제외 — 위 제한사항 참고)
 - **Cloudflare Pages 프로덕션 배포**: 미배포 (요청 시 진행 가능)
-- **최종 업데이트**: 2026-07-03
+- **최종 업데이트**: 2026-07-06 (그리드 중앙 정렬 + 카드 디자인 개선 — CSS Grid `auto-fill` + `justify-content:center` 방식)
